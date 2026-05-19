@@ -1,0 +1,11 @@
+---
+- name: "Use custom module to create file (Module: file_creator)"
+  my_own_namespace.yandex_cloud_elk.file_creator:
+    path: "{{ file_path }}"
+    content: "{{ file_content }}"
+    force_change: "{{ force_change | default(false) }}"
+  register: file_result
+
+- name: Display result (for verification)
+  debug:
+    msg: "File {{ file_result.path_written }} processed. Changed: {{ file_result.changed }}"
